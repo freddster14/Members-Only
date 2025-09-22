@@ -1,0 +1,20 @@
+{
+  "name": "members-only",
+  "version": "1.0.0",
+  "description": "a project to cement userr authentication",
+  "homepage": "https://github.com/freddster14/Members-Only#readme",
+  "bugs": {
+    "url": "https://github.com/freddster14/Members-Only/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freddster14/Members-Only.git"
+  },
+  "license": "ISC",
+  "author": "Freddy Carrillo",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
