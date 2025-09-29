@@ -4,7 +4,7 @@ const path = require('node:path');
 const passport = require('passport');
 const session = require('express-session');
 const mainRouter = require('./routes/main');
-
+require('./config/passport');
 
 const app = express();
 const PORT = 3000;
@@ -12,13 +12,21 @@ const PORT = 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({ extended: false }));
 app.use(session({
-  secret: process.env.secret,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60,
+  },
 }));
 app.use(passport.session());
-app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user || null;
+  next();
+});
 app.use('/', mainRouter);
 
 app.listen(PORT);

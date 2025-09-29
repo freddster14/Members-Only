@@ -1,5 +1,6 @@
 const validate = require('../model/validation');
 const bcrypt = require('bcryptjs')
+const passport = require('passport');
 const { validationResult } = require('express-validator');
 const db = require('../model/db/user');
 
@@ -36,18 +37,16 @@ exports.logIn = (req, res) => {
 
 exports.logInUser = [
   validate.logIn,
-  async (req, res) => {
+  (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render('sign-up', { errors: errors.array() });
+      return res.status(400).render('log-in', { errors: errors.array() });
     }
-    try {
-      const { username, password } = req.body;
-      const user = 
-      const match = await bcrypt.compare(password, user.password);
-    } catch (error) {
-      console.error(error);
-      return next(error);
-    }
-  }
-]
+    res.locals.currentUser = req.user;
+    next();
+  },
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/log-in',
+  }),
+];

@@ -46,3 +46,14 @@ exports.signUp = [
       return true;
     }),
 ];
+
+exports.logIn = [
+  body('username')
+    .trim()
+    .notEmpty()
+    .withMessage('Username cannot be empty'),
+  body('password')
+    .trim()
+    .notEmpty()
+    .withMessage('Password cannot be empty'),
+];
