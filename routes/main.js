@@ -8,5 +8,6 @@ mainRouter.get('/sign-up', mainController.signUp);
 mainRouter.post('/sign-up', mainController.createUser);
 mainRouter.get('/log-in', mainController.logIn);
 mainRouter.post('/log-in', mainController.logInUser);
+mainRouter.get('/log-out', mainController.logOut);
 
 module.exports = mainRouter;
