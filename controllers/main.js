@@ -5,11 +5,7 @@ const { validationResult } = require('express-validator');
 const db = require('../model/db/user');
 
 exports.home = (req, res) => {
-  res.render('index');
-};
-
-exports.signUp = (req, res) => {
-  res.render('sign-up', { errors: [] });
+  res.render('index', { errors: [] });
 };
 
 exports.createUser = [

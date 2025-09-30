@@ -6,12 +6,32 @@
       <label for="title">Title:</label>
       <input type="text" id="title" name="title">
       <label for="message">Message:</label>
-      <textarea name="message">
+      <textarea name="message" id="message"></textarea>      
       <div class="modal-actions">
         <button type="button" onclick="closeModal('messageModal')">Close</button>
         <button type="submit">Send Message</button>
       </div>
     </form>
   </div>
- 
+</div>
+<div id="signUpModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signUpModal')" >&times;</span>
+    <h2>Sign Up</h2>
+    <form action="/sign-up" method="post" style="display: flex; flex-direction: column;">
+      <label for="first_name">First Name:<span style="color: red;">*</span></label>
+      <input type="text" id="first_name" autocomplete="given-name" name="first_name" required>
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" autocomplete="family-name" name="last_name">
+      <label for="username">Username:</label>
+      <input type="text" id="username" autocomplete="off" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" autocomplete="new-password" name="password" required>
+      <label for="password_confirmation">Confirm Password:</label>
+      <input type="password" id="password_confirmation" autocomplete="new-password" name="password_confirmation" required>
+      <button type="button" onclick="closeModal('signUpModal')">Close</button>
+      <button type="submit">SIGN-UP</button>
+    </form>
+    <%- include('errors')%>
+  </div>
 </div>
