@@ -21,7 +21,18 @@
         <% } %>
   </nav>
   <main>
-    <p>Lots of messages</p>
+    <ul>
+      <% messages.forEach(content => { %>
+        <li>
+          <div>
+            <h1><%= content.author_username %></h1>
+          </div>
+          <h2><%= content.title %></h2>
+          <p><%= content.message %></p>
+        </li>
+      <% }) %>
+    </ul>
+    
   </main>
   <%- include('modals') %>
   <script src="/js/modal.js"></script>

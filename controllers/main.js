@@ -5,8 +5,10 @@ const { validationResult } = require('express-validator');
 const userDB = require('../model/db/user');
 const messageDB = require('../model/db/message');
 
-exports.home = (req, res) => {
-  res.render('index', { errors: [] });
+exports.home = async (req, res) => {
+  const limit = 10;
+  const messages = await messageDB.getMessages(limit);
+  res.render('index', { messages, errors: [] });
 };
 
 exports.createUser = [
@@ -65,6 +67,7 @@ exports.createMessage = [
         title: req.body.title,
         message: req.body.message,
         authorId: req.user.id,
+        authorUsername: req.user.username,
       };
       await messageDB.createMessage(message);
       res.redirect('/');
