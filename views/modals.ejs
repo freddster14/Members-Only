@@ -35,3 +35,27 @@
     <%- include('errors')%>
   </div>
 </div>
+<div id="logInModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('logInModal')">&times;</span>
+    <h2>Log In</h2>
+    <form action="/log-in" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" autocomplete="username">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" autocomplete="current-password">
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+</div>
+<div id="logOutModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('logOutModal')">&times;</span>
+    <h2>Log Out</h2>
+    <form action="/log-out" method="get">
+      <p>Are you sure you want to leave?</p>
+      <button type="submit">Yes</button>
+      <button type="button" onclick="closeModal('logOutModal')">No</button>
+    </form>
+  </div>
+</div>

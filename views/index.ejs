@@ -14,18 +14,16 @@
       <p>Welcome <%= currentUser.username %>
       </p>
       <button onclick="openModal('messageModal')">New Message</button>
-      <button onclick="openModal('logoutModal')">Log Out</button>
+      <button onclick="openModal('logOutModal')">Log Out</button>
       <% } else { %>
         <button onclick="openModal('signUpModal')">Sign Up</button>
-        <button onclick="openModal('loginModal')">Log In</button>
+        <button onclick="openModal('logInModal')">Log In</button>
         <% } %>
   </nav>
   <main>
     <p>Lots of messages</p>
   </main>
-
   <%- include('modals') %>
-
-    <script src="/js/modal.js"></script>
+  <script src="/js/modal.js"></script>
 </body>
 </html>
