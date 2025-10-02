@@ -14,7 +14,7 @@ exports.signUp = [
     .optional({ values: 'falsy' })
     .matches(/^[a-zA-Z\s-]+$/)
     .withMessage('Last name must contain only letters, spaces, or hyphens'),
-  body('username')
+  body('new_username')
     .trim()
     .notEmpty()
     .withMessage('Username cannot be empty')
@@ -27,7 +27,7 @@ exports.signUp = [
         throw new Error('Username aleady taken');
       }
     }),
-  body('password')
+  body('new_password')
     .trim()
     .notEmpty()
     .withMessage('Password cannot be empty')
@@ -56,4 +56,20 @@ exports.logIn = [
     .trim()
     .notEmpty()
     .withMessage('Password cannot be empty'),
+];
+
+exports.message = [
+  body('title')
+    .trim()
+    .notEmpty()
+    .withMessage('Title cannot be empty')
+    .bail()
+    .isLength({ max: 50 })
+    .withMessage('Title too long'),
+  body('message')
+    .trim()
+    .notEmpty()
+    .withMessage('Message is missing')
+    .bail()
+    .isLength({ max: 200 }),
 ];

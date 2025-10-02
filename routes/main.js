@@ -5,8 +5,8 @@ const mainRouter = Router();
 
 mainRouter.get('/', mainController.home);
 mainRouter.post('/sign-up', mainController.createUser);
-mainRouter.get('/log-in', mainController.logIn);
 mainRouter.post('/log-in', mainController.logInUser);
 mainRouter.get('/log-out', mainController.logOut);
+mainRouter.post('/new-message', mainController.createMessage);
 
 module.exports = mainRouter;
