@@ -40,13 +40,19 @@ exports.logInUser = [
       const messages = await messageDB.getMessages(limit);
       return res.status(400).render('index', { messages, modalId: 'logInModal', errors: errors.array() });
     }
-    res.locals.currentUser = req.user;
-    return next();
+    passport.authenticate('local', async (error, user, info) => {
+      if (error) return next(error);
+      if (!user) {
+        const limit = 10;
+        const messages = await messageDB.getMessages(limit);
+        return res.status(400).render('index', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
+      }
+      req.logIn(user, (err) => {
+        if (err) next(err);
+      });
+      return res.redirect('/');
+    })(req, res, next);
   },
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/log-in',
-  }),
 ];
 
 exports.logOut = (req, res, next) => {
