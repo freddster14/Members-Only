@@ -8,7 +8,7 @@ const messageDB = require('../model/db/message');
 exports.home = async (req, res) => {
   const limit = 10;
   const messages = await messageDB.getMessages(limit);
-  res.render('index', { messages, errors: [] });
+  res.render('index', { messages, modalId: '', errors: [] });
 };
 
 exports.createUser = [
@@ -16,7 +16,9 @@ exports.createUser = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render('sign-up', { errors: errors.array() });
+      const limit = 10;
+      const messages = await messageDB.getMessages(limit);
+      return res.status(400).render('index', { messages, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
       const { first_name, last_name, new_username, new_password } = req.body;
@@ -31,10 +33,12 @@ exports.createUser = [
 
 exports.logInUser = [
   validate.logIn,
-  (req, res, next) => {
+  async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render('index', { errors: errors.array() });
+      const limit = 10;
+      const messages = await messageDB.getMessages(limit);
+      return res.status(400).render('index', { messages, modalId: 'logInModal', errors: errors.array() });
     }
     res.locals.currentUser = req.user;
     return next();
@@ -59,7 +63,7 @@ exports.createMessage = [
     if (!errors.isEmpty()) {
       return res.status(400).render('index', {
         errors: errors.array(),
-        openModal: 'messageModal',
+        modalId: 'messageModal',
       });
     }
     try {

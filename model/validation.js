@@ -1,5 +1,5 @@
 const { body } = require('express-validator');
-const db = require('./db/user');
+const userDB = require('./db/user');
 
 exports.signUp = [
   body('first_name')
@@ -22,7 +22,7 @@ exports.signUp = [
     .matches(/^[\w\s-]+$/)
     .withMessage('Username must contain only letters, numbers, spaces, underscores, or hyphens')
     .custom(async (value) => {
-      const user = await db.findUserByUsername(value);
+      const user = await userDB.getByUsername(value);
       if (user) {
         throw new Error('Username aleady taken');
       }
