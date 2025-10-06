@@ -18,15 +18,25 @@
       <% } else { %>
         <button onclick="openModal('signUpModal')">Sign Up</button>
         <button onclick="openModal('logInModal')">Log In</button>
-        <% } %>
+      <% } %>
   </nav>
   <main>
     <ul>
       <% messages.forEach(content => { %>
         <li>
-          <div>
-            <h1><%= content.author_username %></h1>
-          </div>
+          <% if (!currentUser || currentUser.status === 'guest') { %>
+            <div class="profile-user">
+              <img class="profile" src="/img/default-profile.jpeg" alt="">
+              <h1>???</h1>
+            </div>
+            <p>⏱️ ???</p>
+          <% } else { %>
+            <div>
+              <img class="profile" src="/img/default-profile.jpeg" alt="">
+              <h1><%= content.author_username %></h1>
+            </div>
+            <p>⏱️ <%= dayjs(content.date).fromNow() %></p>
+          <%} %>
           <h2><%= content.title %></h2>
           <p><%= content.message %></p>
         </li>

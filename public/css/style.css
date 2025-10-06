@@ -1,0 +1,21 @@
+body {
+  padding: 0px 10px;
+  margin: 0 auto;
+}
+
+.profile {
+  border: 2px solid #A9A9A9;
+  border-radius: 50%;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.profile-user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+ul, li {
+  list-style: none;
+}

@@ -48,9 +48,9 @@ exports.logInUser = [
         return res.status(400).render('index', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
       req.logIn(user, (err) => {
-        if (err) next(err);
+        if (err) return next(err);
+        return res.redirect('/');
       });
-      return res.redirect('/');
     })(req, res, next);
   },
 ];
@@ -76,6 +76,7 @@ exports.createMessage = [
       const message = {
         title: req.body.title,
         message: req.body.message,
+        date: new Date().toLocaleString(),
         authorId: req.user.id,
         authorUsername: req.user.username,
       };

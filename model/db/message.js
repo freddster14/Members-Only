@@ -13,6 +13,6 @@ exports.createMessage = async (content) => {
 };
 
 exports.getMessages = async (limit) => {
-  const { rows } = await pool.query('SELECT * FROM messages LIMIT $1', [limit]);
+  const { rows } = await pool.query('SELECT * FROM messages ORDER BY id DESC LIMIT $1 ', [limit]);
   return rows;
 };
