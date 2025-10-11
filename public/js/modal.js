@@ -13,7 +13,6 @@ function closeModal(modalId) {
 }
 
 function passcodeEvent(n) {
-  console.log(currentIndex, passcode);
   if (currentIndex < 4) {
     passcode[currentIndex] = n;
     passcodeInputs[currentIndex].value = n;

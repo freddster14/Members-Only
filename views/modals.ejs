@@ -19,7 +19,9 @@
       </div>
       <button id="submit-passcode" type="submit" style="display: none;"></button>
     </form>
-    <%- include('errors')%>
+    <% if(modalId === 'passcodeModal') { %>
+      <%- include('errors')%>
+    <% } %>
   </div>
 </div>
 
@@ -37,7 +39,9 @@
         <button type="submit">Send Message</button>
       </div>
     </form>
-    <%- include('errors')%>
+    <% if(modalId==='messageModal' ) { %>
+      <%- include('errors')%>
+    <% } %>
   </div>
 </div>
 <div id="signUpModal" class="modal">
@@ -58,7 +62,9 @@
       <button type="button" onclick="closeModal('signUpModal')">Close</button>
       <button type="submit">SIGN-UP</button>
     </form>
-    <%- include('errors')%>
+    <% if(modalId==='signUpModal' ) { %>
+      <%- include('errors')%>
+    <% } %>
   </div>
 </div>
 <div id="logInModal" class="modal">
@@ -72,7 +78,9 @@
       <input type="password" id="password" name="password" autocomplete="current-password">
       <button type="submit">Log In</button>
     </form>
-    <%- include('errors')%>
+    <% if(modalId==='logInModal' ) { %>
+      <%- include('errors')%>
+    <% } %>
   </div>
 </div>
 <div id="logOutModal" class="modal">
@@ -86,7 +94,6 @@
     </form>
   </div>
 </div>
-
 <% if(modalId !== '') { %>
   <script>
     window.onload = (e) => openModal('<%= modalId %>');

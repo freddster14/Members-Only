@@ -8,7 +8,7 @@ const messageDB = require('../model/db/message');
 
 exports.home = async (req, res) => {
   const messages = await messageDB.getMessages();
-  res.render('index', { messages, modalId: '', errors: [] });
+  res.render('index', { messages, modalId: ''});
 };
 
 exports.createUser = [
