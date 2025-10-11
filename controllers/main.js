@@ -1,3 +1,4 @@
+require('dotenv').config();
 const validate = require('../model/validation');
 const bcrypt = require('bcryptjs')
 const passport = require('passport');
@@ -6,8 +7,7 @@ const userDB = require('../model/db/user');
 const messageDB = require('../model/db/message');
 
 exports.home = async (req, res) => {
-  const limit = 10;
-  const messages = await messageDB.getMessages(limit);
+  const messages = await messageDB.getMessages();
   res.render('index', { messages, modalId: '', errors: [] });
 };
 
@@ -16,8 +16,7 @@ exports.createUser = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const limit = 10;
-      const messages = await messageDB.getMessages(limit);
+      const messages = await messageDB.getMessages();
       return res.status(400).render('index', { messages, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
@@ -36,15 +35,13 @@ exports.logInUser = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const limit = 10;
-      const messages = await messageDB.getMessages(limit);
+      const messages = await messageDB.getMessages();
       return res.status(400).render('index', { messages, modalId: 'logInModal', errors: errors.array() });
     }
     passport.authenticate('local', async (error, user, info) => {
       if (error) return next(error);
       if (!user) {
-        const limit = 10;
-        const messages = await messageDB.getMessages(limit);
+        const messages = await messageDB.getMessages();
         return res.status(400).render('index', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
       req.logIn(user, (err) => {
@@ -67,7 +64,9 @@ exports.createMessage = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      const messages = await messageDB.getMessages();
       return res.status(400).render('index', {
+        messages,
         errors: errors.array(),
         modalId: 'messageModal',
       });
@@ -84,6 +83,23 @@ exports.createMessage = [
       res.redirect('/');
     } catch (error) {
       next(error);
+    }
+  },
+];
+
+exports.checkPasscode = [
+  async (req, res) => {
+    const match = req.body.passcode === process.env.PASSCODE;
+    if (!match) {
+      const messages = await messageDB.getMessages();
+      res.status(400).render('index', {
+        messages,
+        errors: [{ msg: 'Incorrect Passcode' }],
+        modalId: 'passcodeModal',
+      });
+    } else {
+      await userDB.addToClub(req.user.id);
+      res.redirect('/');
     }
   },
 ];

@@ -8,5 +8,6 @@ mainRouter.post('/sign-up', mainController.createUser);
 mainRouter.post('/log-in', mainController.logInUser);
 mainRouter.get('/log-out', mainController.logOut);
 mainRouter.post('/new-message', mainController.createMessage);
+mainRouter.post('/passcode', mainController.checkPasscode);
 
 module.exports = mainRouter;

@@ -1,3 +1,28 @@
+<div id="passcodeModal" class="modal">
+  <div class="modal-content" style="max-width: 300px;">
+    <form action="/passcode" method="post">
+      <span class="close" onclick="closeModal('passcodeModal')">&times;</span>
+      <h2>Enter Passcode</h2>
+      <input type="password" id="real-passcode" name="passcode" hidden>
+      <div class="passcode-inputs">
+        <input type="password" class="passcode-input" maxlength="1" readonly>
+        <input type="password" class="passcode-input" maxlength="1" readonly>
+        <input type="password" class="passcode-input" maxlength="1" readonly>
+        <input type="password" class="passcode-input" maxlength="1" readonly>
+      </div>
+      <div class="keypad">
+        <% [1,2,3,4,5,6,7,8,9,0].forEach(n=> { %>
+          <button type="button" onclick="passcodeEvent(<%= n %>)">
+            <%= n %>
+          </button>
+          <% }) %>
+      </div>
+      <button id="submit-passcode" type="submit" style="display: none;"></button>
+    </form>
+    <%- include('errors')%>
+  </div>
+</div>
+
 <div id="messageModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('messageModal')">&times;</span>

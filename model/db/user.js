@@ -22,3 +22,7 @@ exports.getByUsername = async (username) => {
   const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
   return rows[0];
 };
+
+exports.addToClub = async (id) => {
+  await pool.query('UPDATE users SET status=$1 WHERE id=$2', ['member', id]);
+}

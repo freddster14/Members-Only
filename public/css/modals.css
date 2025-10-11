@@ -56,3 +56,18 @@
   margin-bottom: 20px;
   color: #333;
 }
+
+.keypad {
+  max-width: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.keypad button {
+  width: 35px;
+  height: 35px;
+  font-size: 1em;
+}
