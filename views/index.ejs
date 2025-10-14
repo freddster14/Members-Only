@@ -5,21 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/modals.css">
-  <title>Members-Only</title>
+  <title>M</title>
 </head>
-<body>
-  <nav>
-    <h1>Members-Only</h1>
-    <button onclick="openModal('passcodeModal')">Join The Club!</button>
-    <% if(locals.currentUser) { %>
-      <p>Welcome <%= currentUser.username %></p>
-      <button onclick="openModal('messageModal')">New Message</button>
-      <button onclick="openModal('logOutModal')">Log Out</button>
-    <% } else { %>
-      <button onclick="openModal('signUpModal')">Sign Up</button>
-      <button onclick="openModal('logInModal')">Log In</button>
-    <% } %>
-  </nav>
+  <%- include('nav')%>
   <main>
     <ul>
       <% messages.forEach(content => { %>
@@ -29,13 +17,13 @@
               <img class="profile" src="/img/default-profile.jpeg" alt="">
               <h1>???</h1>
             </div>
-            <p>⏱️ ???</p>
+            <p class="timestamp">⏱️ ???</p>
           <% } else { %>
-            <div>
+            <div class="profile-user">
               <img class="profile" src="/img/default-profile.jpeg" alt="">
               <h1><%= content.author_username %></h1>
             </div>
-            <p>⏱️ <%= dayjs(content.date).fromNow() %></p>
+            <p class="timestamp">⏱️ <%= dayjs(content.date).fromNow() %></p>
           <%} %>
           <h2><%= content.title %></h2>
           <p><%= content.message %></p>

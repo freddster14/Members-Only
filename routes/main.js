@@ -3,7 +3,8 @@ const mainController = require('../controllers/main');
 
 const mainRouter = Router();
 
-mainRouter.get('/', mainController.home);
+mainRouter.get('/', mainController.intro);
+mainRouter.get('/posts', mainController.home);
 mainRouter.post('/sign-up', mainController.createUser);
 mainRouter.post('/log-in', mainController.logInUser);
 mainRouter.get('/log-out', mainController.logOut);

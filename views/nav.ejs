@@ -1,0 +1,15 @@
+<nav>
+  <h1><img src="/img/mask-happly-svgrepo-com.svg" alt=""> M<span style="font-size: 1rem;">ASK</span></h1>
+  <div class="nav-buttons">
+    <% if(locals.currentUser) { %>
+      <p>Welcome <%= currentUser.username %>
+      </p>
+      <button onclick="openModal('passcodeModal')">Join The Club!</button>
+      <button onclick="openModal('messageModal')">New Message</button>
+      <button onclick="openModal('logOutModal')">Log Out</button>
+      <% } else { %>
+        <button onclick="openModal('signUpModal')">Sign Up</button>
+        <button onclick="openModal('logInModal')">Log In</button>
+        <% } %>
+  </div>
+</nav>

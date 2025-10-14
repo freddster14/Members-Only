@@ -1,6 +1,13 @@
 body {
-  padding: 0px 10px;
+  padding: 0px 20px;
   margin: 0 auto;
+  max-width: 1000px;
+  background-color: #10263A;
+  color: #E3EEF7;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .profile {
@@ -14,6 +21,55 @@ body {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.timestamp {
+  margin: 0;
+  background-color: #666666;
+  width: fit-content;
+  padding: 4px 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.timestamp:hover, .timestamp:focus {
+  background-color: #A9A9A9;
+}
+
+nav {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0A1A26;
+  padding: 15px 20px;
+  border-radius: 3rem;
+  top: 1rem;
+}
+
+nav h1 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav img {
+  width: 30px;
+  margin-right: 5px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-buttons button {
+  font-size: 1rem;
+  border-radius: 2rem;
+  padding: 8px 20px;
+  background-color: #10263A;
+  color: #E3EEF7;
+  border: none;
 }
 
 ul, li {

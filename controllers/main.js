@@ -6,6 +6,10 @@ const { validationResult } = require('express-validator');
 const userDB = require('../model/db/user');
 const messageDB = require('../model/db/message');
 
+exports.intro = (req, res) => {
+  res.render('intro');
+};
+
 exports.home = async (req, res) => {
   const messages = await messageDB.getMessages();
   res.render('index', { messages, modalId: ''});
