@@ -1,8 +1,8 @@
 require('dotenv').config();
-const validate = require('../model/validation');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { validationResult } = require('express-validator');
+const validate = require('../model/validation');
 const userDB = require('../model/db/user');
 const messageDB = require('../model/db/message');
 
@@ -12,7 +12,7 @@ exports.intro = (req, res) => {
 
 exports.home = async (req, res) => {
   const messages = await messageDB.getMessages();
-  res.render('posts', { messages, modalId: ''});
+  res.render('posts', { messages, modalId: '' });
 };
 
 exports.createUser = [
@@ -24,7 +24,12 @@ exports.createUser = [
       return res.status(400).render('posts', { messages, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
-      const { first_name, last_name, new_username, new_password } = req.body;
+      const {
+        first_name,
+        last_name,
+        new_username,
+        new_password
+      } = req.body;
       const hashedPassword = await bcrypt.hash(new_password, 12);
       await userDB.createUser(first_name, last_name, new_username, hashedPassword);
       return res.redirect('/');
@@ -42,13 +47,13 @@ exports.logInUser = [
       const messages = await messageDB.getMessages();
       return res.status(400).render('posts', { messages, modalId: 'logInModal', errors: errors.array() });
     }
-    passport.authenticate('local', async (error, user, info) => {
+    passport.authenticate('local', async (error, user) => {
       if (error) return next(error);
       if (!user) {
         const messages = await messageDB.getMessages();
         return res.status(400).render('posts', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
-      req.logIn(user, (err) => {
+      return req.logIn(user, (err) => {
         if (err) return next(err);
         return res.redirect('/');
       });
@@ -84,9 +89,9 @@ exports.createMessage = [
         authorUsername: req.user.username,
       };
       await messageDB.createMessage(message);
-      res.redirect('/');
+      return res.redirect('/');
     } catch (error) {
-      next(error);
+      return next(error);
     }
   },
 ];
