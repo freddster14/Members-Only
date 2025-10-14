@@ -12,7 +12,7 @@ exports.intro = (req, res) => {
 
 exports.home = async (req, res) => {
   const messages = await messageDB.getMessages();
-  res.render('index', { messages, modalId: ''});
+  res.render('posts', { messages, modalId: ''});
 };
 
 exports.createUser = [
@@ -21,7 +21,7 @@ exports.createUser = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render('index', { messages, modalId: 'signUpModal', errors: errors.array() });
+      return res.status(400).render('posts', { messages, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
       const { first_name, last_name, new_username, new_password } = req.body;
@@ -40,13 +40,13 @@ exports.logInUser = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render('index', { messages, modalId: 'logInModal', errors: errors.array() });
+      return res.status(400).render('posts', { messages, modalId: 'logInModal', errors: errors.array() });
     }
     passport.authenticate('local', async (error, user, info) => {
       if (error) return next(error);
       if (!user) {
         const messages = await messageDB.getMessages();
-        return res.status(400).render('index', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
+        return res.status(400).render('posts', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
       req.logIn(user, (err) => {
         if (err) return next(err);
@@ -69,7 +69,7 @@ exports.createMessage = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render('index', {
+      return res.status(400).render('posts', {
         messages,
         errors: errors.array(),
         modalId: 'messageModal',
@@ -96,7 +96,7 @@ exports.checkPasscode = [
     const match = req.body.passcode === process.env.PASSCODE;
     if (!match) {
       const messages = await messageDB.getMessages();
-      res.status(400).render('index', {
+      res.status(400).render('posts', {
         messages,
         errors: [{ msg: 'Incorrect Passcode' }],
         modalId: 'passcodeModal',

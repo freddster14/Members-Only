@@ -1,39 +1,13 @@
 body {
   padding: 0px 20px;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
   background-color: #10263A;
   color: #E3EEF7;
 }
 
 button:hover {
   cursor: pointer;
-}
-
-.profile {
-  border: 2px solid #A9A9A9;
-  border-radius: 50%;
-  max-width: 50px;
-  max-height: 50px;
-}
-
-.profile-user {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.timestamp {
-  margin: 0;
-  background-color: #666666;
-  width: fit-content;
-  padding: 4px 5px;
-  border-radius: 5px;
-  color: white;
-}
-
-.timestamp:hover, .timestamp:focus {
-  background-color: #A9A9A9;
 }
 
 nav {
@@ -61,10 +35,11 @@ nav img {
 .nav-buttons {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .nav-buttons button {
-  font-size: 1rem;
+  font-size: 0.9rem;
   border-radius: 2rem;
   padding: 8px 20px;
   background-color: #10263A;
@@ -72,6 +47,61 @@ nav img {
   border: none;
 }
 
+.posts {
+  margin: 0 auto;
+  font-size: 1.1rem;
+  margin-top: 50px;
+  width: clamp(500px, 80vw, 1000px);
+}
+
+.posts ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.posts li {
+  background-color: #0A1A26;
+  padding: 3px 25px;
+  border-radius: 10px;
+}
+
+.posts li h2 {
+  margin: 16px 0px;
+}
+
 ul, li {
+  padding: 0;
   list-style: none;
+}
+
+.profile-time {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.profile-user, .timestamp {
+  margin: 0;
+  display: flex;
+  gap: 5px;
+  background-color: #10263A;
+  align-items: center;
+  width: fit-content;
+  padding: 4px 5px;
+  border-radius: 5px;
+}
+
+.icon {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.profile-user p {
+  margin: 0;
+}
+
+.timestamp:hover,
+.timestamp:focus {
+  background-color: #A9A9A9;
 }

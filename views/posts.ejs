@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/modals.css">
+  <title>M</title>
+</head>
+  <%- include('nav')%>
+  <main class="posts">
+    <ul>
+    <% messages.forEach(content => { %>
+      <li>
+        <h2><%= content.title %></h2>
+        <div class="profile-time">
+        <% if (!currentUser || currentUser.status === 'guest') { %>
+          <div class="profile-user">
+            <img class="icon" src="/img/user-alt-1-svgrepo-com.svg" alt="user">
+            <p>???</p>
+          </div>
+          <p class="timestamp"><img class="icon" src="/img/time-svgrepo-com.svg" alt="time">???</p>
+        <% } else { %>
+          <div class="profile-user">
+            <img class="icon" src="/img/user-alt-1-svgrepo-com.svg" alt="user">
+            <p><%= content.author_username %></p>
+          </div>
+          <p class="timestamp"><img class="icon" src="/img/time-svgrepo-com.svg" alt="time"> <%= dayjs(content.date).fromNow() %></p>
+        <%} %>
+      </div>
+        <p><%= content.message %></p>
+      </li>
+    <% }) %>
+    </ul>
+    
+  </main>
+  <%- include('modals') %>
+  <script src="/js/modal.js"></script>
+</body>
+</html>
