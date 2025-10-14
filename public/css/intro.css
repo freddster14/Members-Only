@@ -3,7 +3,9 @@
   align-items: center;
   flex-direction: column;
   font-size: 1.2rem;
-  margin-top: 75px;
+  margin: 0 auto;
+  width: clamp(0px, 90vw, 1000px);
+  margin-top: 55px;
 }
 
 .intro-section h1 {
@@ -33,7 +35,7 @@
 
 .intro-section p {
   background-color: #0A1A26;
-  width: 650px;
+  max-width: 650px;
   padding: 20px 25px;
   border-radius: 10px;
 }

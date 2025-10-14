@@ -21,8 +21,11 @@ nav {
   top: 1rem;
 }
 
-nav h1 {
+.mask {
   margin: 0;
+  font-size: 2rem;
+  text-decoration: none;
+  color: inherit;
   display: flex;
   align-items: center;
 }
@@ -51,7 +54,7 @@ nav img {
   margin: 0 auto;
   font-size: 1.1rem;
   margin-top: 50px;
-  width: clamp(500px, 80vw, 1000px);
+  width: clamp(0px, 90vw, 1000px);
 }
 
 .posts ul {
