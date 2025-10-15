@@ -48,19 +48,18 @@
   <div class="modal-content">
     <span class="close" onclick="closeModal('signUpModal')" >&times;</span>
     <h2>Sign Up</h2>
-    <form action="/sign-up" method="post" style="display: flex; flex-direction: column;">
-      <label for="first_name">First Name:<span style="color: red;">*</span></label>
+    <form action="/sign-up" method="post">
+      <label for="first_name">First Name<span style="color: red;">*</span></label>
       <input type="text" id="first_name" autocomplete="given-name" name="first_name" required>
-      <label for="last_name">Last Name:</label>
+      <label for="last_name">Last Name</label>
       <input type="text" id="last_name" autocomplete="family-name" name="last_name">
-      <label for="new_username">Username:</label>
+      <label for="new_username">Username<span style="color: red;">*</span></label>
       <input type="text" id="new_username" autocomplete="off" name="new_username" required>
-      <label for="new_password">Password:</label>
+      <label for="new_password">Password<span style="color: red;">*</span></label>
       <input type="password" id="new_password" autocomplete="new_password" name="new_password" required>
-      <label for="password_confirmation">Confirm Password:</label>
+      <label for="password_confirmation">Confirm Password<span style="color: red;">*</span></label>
       <input type="password" id="password_confirmation" autocomplete="new-password" name="password_confirmation" required>
-      <button type="button" onclick="closeModal('signUpModal')">Close</button>
-      <button type="submit">SIGN-UP</button>
+      <button type="submit">Sign Up</button>
     </form>
     <% if(modalId==='signUpModal' ) { %>
       <%- include('errors')%>

@@ -45,9 +45,28 @@ nav img {
   font-size: 0.9rem;
   border-radius: 2rem;
   padding: 8px 20px;
+  border: none;
+  transition: color 0.2s;
+}
+
+.sign-up, .join {
+  background-color: #E3EEF7;
+  color: #0A1A26;
+}
+
+.sign-up:hover, .join:hover, .sign-up:focus, .join:focus {
   background-color: #10263A;
   color: #E3EEF7;
-  border: none;
+}
+
+.log-in, .post, .log-out {
+  background-color: #10263A;
+  color: #E3EEF7;
+}
+
+.log-in:hover, .log-in:focus, .post:hover, .post:focus, .log-out:hover, .log-out:focus {
+  background-color: #E3EEF7;
+  color: #0A1A26;
 }
 
 .posts {
@@ -104,7 +123,6 @@ ul, li {
   margin: 0;
 }
 
-.timestamp:hover,
-.timestamp:focus {
-  background-color: #A9A9A9;
+.profile-user:hover, .profile-user:focus, .timestamp:hover, .timestamp:focus {
+  background-color: #0A1A26;
 }
