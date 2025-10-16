@@ -32,6 +32,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.currentUser = req.user || null;
   res.locals.dayjs = dayjs;
+  if (req.method === 'GET' && !req.path.startsWith('/.well-known')) req.session.previousPath = req.path;
   next();
 });
 app.use('/', mainRouter);

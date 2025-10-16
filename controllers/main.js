@@ -7,7 +7,7 @@ const userDB = require('../model/db/user');
 const messageDB = require('../model/db/message');
 
 exports.intro = (req, res) => {
-  res.render('intro');
+  res.render('intro', {modalId: ''});
 };
 
 exports.home = async (req, res) => {
@@ -18,10 +18,11 @@ exports.home = async (req, res) => {
 exports.createUser = [
   validate.signUp,
   async (req, res, next) => {
+    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render('posts', { messages, modalId: 'signUpModal', errors: errors.array() });
+      return res.status(400).render(redirect, { messages, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
       const {
@@ -32,7 +33,7 @@ exports.createUser = [
       } = req.body;
       const hashedPassword = await bcrypt.hash(new_password, 12);
       await userDB.createUser(first_name, last_name, new_username, hashedPassword);
-      return res.redirect('/');
+      return res.redirect(req.session.previousPath);
     } catch (error) {
       return next(error);
     }
@@ -43,19 +44,21 @@ exports.logInUser = [
   validate.logIn,
   async (req, res, next) => {
     const errors = validationResult(req);
+    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
+    console.log(req.session.previousPath);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render('posts', { messages, modalId: 'logInModal', errors: errors.array() });
+      return res.status(400).render(redirect, { messages, modalId: 'logInModal', errors: errors.array() });
     }
     passport.authenticate('local', async (error, user) => {
       if (error) return next(error);
       if (!user) {
         const messages = await messageDB.getMessages();
-        return res.status(400).render('posts', { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
+        return res.status(400).render(redirect, { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
       return req.logIn(user, (err) => {
         if (err) return next(err);
-        return res.redirect('/');
+        return res.redirect(req.session.previousPath);
       });
     })(req, res, next);
   },
@@ -71,10 +74,11 @@ exports.logOut = (req, res, next) => {
 exports.createMessage = [
   validate.message,
   async (req, res, next) => {
+    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render('posts', {
+      return res.status(400).render(redirect, {
         messages,
         errors: errors.array(),
         modalId: 'messageModal',
@@ -89,7 +93,7 @@ exports.createMessage = [
         authorUsername: req.user.username,
       };
       await messageDB.createMessage(message);
-      return res.redirect('/');
+      return res.redirect(req.session.previousPath);
     } catch (error) {
       return next(error);
     }
@@ -98,17 +102,18 @@ exports.createMessage = [
 
 exports.checkPasscode = [
   async (req, res) => {
+    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const match = req.body.passcode === process.env.PASSCODE;
     if (!match) {
       const messages = await messageDB.getMessages();
-      res.status(400).render('posts', {
+      res.status(400).render(redirect, {
         messages,
         errors: [{ msg: 'Incorrect Passcode' }],
         modalId: 'passcodeModal',
       });
     } else {
       await userDB.addToClub(req.user.id);
-      res.redirect('/');
+      res.redirect(req.session.previousPath);
     }
   },
 ];
