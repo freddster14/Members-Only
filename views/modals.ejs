@@ -34,9 +34,9 @@
     <% } %>
     <form action="/new-message" method="post">
       <label for="title">Title<span style="color: red;">*</span></label>
-      <input type="text" id="title" name="title">
+      <input type="text" id="title" name="title" required>
       <label for="message">Message<span style="color: red;">*</span></label>
-      <textarea name="message" id="message"></textarea>      
+      <textarea name="message" id="message" required></textarea>      
       <button type="submit">Post</button>
     </form>
   </div>
@@ -73,9 +73,9 @@
     <% } %>
     <form action="/log-in" method="post">
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" autocomplete="username">
+      <input type="text" id="username" name="username" autocomplete="username" required>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" autocomplete="current-password">
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
       <button type="submit">Log In</button>
     </form>
   </div>
