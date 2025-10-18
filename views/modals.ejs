@@ -1,8 +1,11 @@
 <div id="passcodeModal" class="modal">
   <div class="modal-content" style="max-width: 300px;">
+    <span class="close" onclick="closeModal('passcodeModal')">&times;</span>
+    <h2>Enter Passcode</h2>
+    <% if(modalId==='passcodeModal' ) { %>
+      <%- include('errors')%>
+    <% } %>
     <form action="/passcode" method="post">
-      <span class="close" onclick="closeModal('passcodeModal')">&times;</span>
-      <h2>Enter Passcode</h2>
       <input type="text" id="real-passcode" name="passcode" hidden>
       <div class="passcode-inputs">
         <input type="text" class="passcode-input" maxlength="1" readonly>
@@ -15,13 +18,10 @@
           <button type="button" onclick="passcodeEvent(<%= n %>)">
             <%= n %>
           </button>
-          <% }) %>
+        <% }) %>
       </div>
       <button id="submit-passcode" type="submit" style="display: none;"></button>
     </form>
-    <% if(modalId === 'passcodeModal') { %>
-      <%- include('errors')%>
-    <% } %>
   </div>
 </div>
 
@@ -29,25 +29,25 @@
   <div class="modal-content">
     <span class="close" onclick="closeModal('messageModal')">&times;</span>
     <h2>New Message</h2>
-    <form action="/new-message" method="post">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title">
-      <label for="message">Message:</label>
-      <textarea name="message" id="message"></textarea>      
-      <div class="modal-actions">
-        <button type="button" onclick="closeModal('messageModal')">Close</button>
-        <button type="submit">Send Message</button>
-      </div>
-    </form>
     <% if(modalId==='messageModal' ) { %>
       <%- include('errors')%>
     <% } %>
+    <form action="/new-message" method="post">
+      <label for="title">Title<span style="color: red;">*</span></label>
+      <input type="text" id="title" name="title">
+      <label for="message">Message<span style="color: red;">*</span></label>
+      <textarea name="message" id="message"></textarea>      
+      <button type="submit">Post</button>
+    </form>
   </div>
 </div>
 <div id="signUpModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('signUpModal')" >&times;</span>
     <h2>Sign Up</h2>
+    <% if(modalId==='signUpModal' ) { %>
+      <%- include('errors')%>
+    <% } %>
     <form action="/sign-up" method="post">
       <label for="first_name">First Name<span style="color: red;">*</span></label>
       <input type="text" id="first_name" autocomplete="given-name" name="first_name" required>
@@ -61,15 +61,16 @@
       <input type="password" id="password_confirmation" autocomplete="new-password" name="password_confirmation" required>
       <button type="submit">Sign Up</button>
     </form>
-    <% if(modalId==='signUpModal' ) { %>
-      <%- include('errors')%>
-    <% } %>
+
   </div>
 </div>
 <div id="logInModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('logInModal')">&times;</span>
     <h2>Log In</h2>
+    <% if(modalId==='logInModal' ) { %>
+      <%- include('errors')%>
+    <% } %>
     <form action="/log-in" method="post">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" autocomplete="username">
@@ -77,9 +78,6 @@
       <input type="password" id="password" name="password" autocomplete="current-password">
       <button type="submit">Log In</button>
     </form>
-    <% if(modalId==='logInModal' ) { %>
-      <%- include('errors')%>
-    <% } %>
   </div>
 </div>
 <div id="logOutModal" class="modal">
@@ -87,7 +85,7 @@
     <span class="close" onclick="closeModal('logOutModal')">&times;</span>
     <h2>Log Out</h2>
     <form action="/log-out" method="get">
-      <p>Are you sure you want to leave?</p>
+      <p style="margin: 0;">Are you sure you want to leave?</p>
       <button type="submit">Yes</button>
       <button type="button" onclick="closeModal('logOutModal')">No</button>
     </form>

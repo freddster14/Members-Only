@@ -57,7 +57,7 @@ exports.logInUser = [
       }
       return req.logIn(user, (err) => {
         if (err) return next(err);
-        return res.redirect(view === 'intro' ? '/' : '/posts');
+        return res.redirect('/posts');
       });
     })(req, res, next);
   },

@@ -2,8 +2,13 @@
   <a class="mask" href="/"><img src="/img/mask-happly-svgrepo-com.svg" alt=""> M<span style="font-size: 1rem;">ASK</span></a>
   <div class="nav-buttons">
     <% if(locals.currentUser) { %>
-      </p>
-      <button class="join" onclick="openModal('passcodeModal')"><%= currentUser.username %>, join The Club!</button>
+      <% if(currentUser.status === 'guest') { %>
+        <button class="join" onclick="openModal('passcodeModal')">
+          <%= currentUser.username %>, join The Club!
+        </button>
+      <% } else { %>
+        <button class="join"><%= currentUser.username %></button>
+      <% } %>
       <button class="post" onclick="openModal('messageModal')">Post</button>
       <button class="log-out" onclick="openModal('logOutModal')">Log Out</button>
       <% } else { %>

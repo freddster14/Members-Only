@@ -1,7 +1,10 @@
 <% if(locals.errors) { %>
-  <ul class="errors">
+  <ul>
     <% errors.forEach(err=> { %>
-      <li><%= err.msg %></li>
+      <div class="errors">
+        <img class="icon" src="/img/error-16-svgrepo-com.svg" alt="error">
+        <li><%= err.msg %></li>
+      </div>
     <% }) %>
   </ul>
 <% } %>

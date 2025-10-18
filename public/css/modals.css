@@ -11,7 +11,7 @@
 }
 
 .modal-content {
-  background-color: #10263A;
+  background-color: #173B56;
   font-size: 1.1rem;
   color: #E3EEF7;
   margin: 10% auto;
@@ -61,10 +61,11 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 15px;
 }
 
-.modal-content input {
-  background-color: #0A1A26;
+.modal-content input, .modal-content textarea {
+  background-color: #10263A;
   margin-top: -10px;
   color: inherit;
   font-size: 1rem;
@@ -98,16 +99,48 @@
 }
 
 .keypad {
-  max-width: 120px;
+  width: 135px;
   display: flex;
   flex-wrap: wrap;
-  gap: 3px;
+  gap: 5px;
   justify-content: center;
   margin: 0 auto;
 }
 
 .keypad button {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.7rem;
+  padding: 0;
   font-size: 1em;
+  margin: 0;
+}
+
+
+.passcode-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 15px;
+}
+
+.passcode-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: default;
+  text-align: center;
+}
+
+.passcode-input:focus {
+  outline: none;
+}
+
+.errors {
+  background-color: #0A1A26;
+  border-radius: 0.6rem;
+  padding: 1rem;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
 }

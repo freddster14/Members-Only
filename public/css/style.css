@@ -50,8 +50,8 @@ nav img {
 }
 
 .sign-up, .join {
-  background-color: #E3EEF7;
-  color: #0A1A26;
+  background-color: #173B56;
+  color: #E3EEF7;
 }
 
 .sign-up:hover, .join:hover, .sign-up:focus, .join:focus {
@@ -65,8 +65,8 @@ nav img {
 }
 
 .log-in:hover, .log-in:focus, .post:hover, .post:focus, .log-out:hover, .log-out:focus {
-  background-color: #E3EEF7;
-  color: #0A1A26;
+  background-color: #173B56;
+  color: #E3EEF7;
 }
 
 .posts {
@@ -93,6 +93,7 @@ nav img {
 }
 
 ul, li {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
