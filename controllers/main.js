@@ -7,7 +7,7 @@ const userDB = require('../model/db/user');
 const messageDB = require('../model/db/message');
 
 exports.intro = (req, res) => {
-  res.render('intro', {modalId: ''});
+  res.render('intro', { modalId: '' });
 };
 
 exports.home = async (req, res) => {
@@ -18,11 +18,11 @@ exports.home = async (req, res) => {
 exports.createUser = [
   validate.signUp,
   async (req, res, next) => {
-    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
+    const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render(redirect, { messages, modalId: 'signUpModal', errors: errors.array() });
+      return res.status(400).render(view, { messages, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
       const {
@@ -44,21 +44,20 @@ exports.logInUser = [
   validate.logIn,
   async (req, res, next) => {
     const errors = validationResult(req);
-    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
-    console.log(req.session.previousPath);
+    const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render(redirect, { messages, modalId: 'logInModal', errors: errors.array() });
+      return res.status(400).render(view, { messages, modalId: 'logInModal', errors: errors.array() });
     }
     passport.authenticate('local', async (error, user) => {
       if (error) return next(error);
       if (!user) {
         const messages = await messageDB.getMessages();
-        return res.status(400).render(redirect, { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
+        return res.status(400).render(view, { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
       return req.logIn(user, (err) => {
         if (err) return next(err);
-        return res.redirect(req.session.previousPath);
+        return res.redirect(view === 'intro' ? '/' : '/posts');
       });
     })(req, res, next);
   },
@@ -74,11 +73,11 @@ exports.logOut = (req, res, next) => {
 exports.createMessage = [
   validate.message,
   async (req, res, next) => {
-    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
+    const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const messages = await messageDB.getMessages();
-      return res.status(400).render(redirect, {
+      return res.status(400).render(view, {
         messages,
         errors: errors.array(),
         modalId: 'messageModal',
@@ -102,11 +101,11 @@ exports.createMessage = [
 
 exports.checkPasscode = [
   async (req, res) => {
-    const redirect = req.session.previousPath !== '/' ? 'posts' : 'intro';
+    const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const match = req.body.passcode === process.env.PASSCODE;
     if (!match) {
       const messages = await messageDB.getMessages();
-      res.status(400).render(redirect, {
+      res.status(400).render(view, {
         messages,
         errors: [{ msg: 'Incorrect Passcode' }],
         modalId: 'passcodeModal',
