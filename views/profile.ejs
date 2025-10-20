@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/modals.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <title><%= currentUser.username %></title>
+</head>
+<body>
+  <%- include('nav')%>
+  <main>
+    <h1><%= currentUser.first_name %>, <%= currentUser.last_name %></h1>
+    <div>
+      <h2><%= currentUser.username %></h2>
+      <h2><%= currentUser.status %></h2>
+    </div>
+    <div class="posts">
+       <ul>
+      <% if (posts) { %>
+        <% posts.forEach(content => { %>
+          <li>
+            <h2><%= content.title %></h2>
+            <div class="profile-time">
+              <div class="profile-user">
+                <img class="icon" src="/img/user-alt-1-svgrepo-com.svg" alt="user">
+                <p><%= content.author_username %></p>
+              </div>
+              <p class="timestamp"><img class="icon" src="/img/time-svgrepo-com.svg" alt="time">
+                <%= dayjs(content.date).fromNow() %>
+              </p>
+            </div>
+            <p><%= content.message %></p>
+          </li>
+        <% }) %>
+      <% } else { %>
+        <li>
+          <h2>No posts yet</h2>
+          <p>Create one <span onclick="openModal('messageModal')">now</span>!</p>
+        </li>
+      <% } %>
+    </ul>
+    </div>
+   
+  </main>
+  <%- include('modals') %>
+  <script src="/js/modal.js"></script>
+</body>
+</html>

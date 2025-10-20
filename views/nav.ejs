@@ -7,7 +7,7 @@
           <%= currentUser.username %>, join The Club!
         </button>
       <% } else { %>
-        <button class="join"><%= currentUser.username %></button>
+        <a href="/profile" class="join"><%= currentUser.username %></a>
       <% } %>
       <button class="post" onclick="openModal('messageModal')">Post</button>
       <button class="log-out" onclick="openModal('logOutModal')">Log Out</button>

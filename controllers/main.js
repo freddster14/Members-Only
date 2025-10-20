@@ -4,20 +4,20 @@ const passport = require('passport');
 const { validationResult } = require('express-validator');
 const validate = require('../model/validation');
 const userDB = require('../model/db/user');
-const messageDB = require('../model/db/message');
+const postsDB = require('../model/db/posts');
 
 exports.intro = (req, res) => {
   res.render('intro', { modalId: '' });
 };
 
 exports.home = async (req, res) => {
-  const messages = await messageDB.getMessages();
-  res.render('posts', { messages, modalId: '' });
+  const posts = await postsDB.getPosts();
+  res.render('posts', { posts, modalId: '' });
 };
 
 exports.profile = async (req, res) => {
-  console.log(req.user);
-  res.render('profile');
+  const posts = await postsDB.getUserPosts(req.user.id);
+  res.render('profile', { posts, modalId: '' });
 };
 
 exports.createUser = [
@@ -26,8 +26,8 @@ exports.createUser = [
     const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const messages = await messageDB.getMessages();
-      return res.status(400).render(view, { messages, modalId: 'signUpModal', errors: errors.array() });
+      const posts = await postsDB.getPosts();
+      return res.status(400).render(view, { posts, modalId: 'signUpModal', errors: errors.array() });
     }
     try {
       const {
@@ -51,14 +51,14 @@ exports.logInUser = [
     const errors = validationResult(req);
     const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     if (!errors.isEmpty()) {
-      const messages = await messageDB.getMessages();
-      return res.status(400).render(view, { messages, modalId: 'logInModal', errors: errors.array() });
+      const posts = await postsDB.getPosts();
+      return res.status(400).render(view, { posts, modalId: 'logInModal', errors: errors.array() });
     }
     passport.authenticate('local', async (error, user) => {
       if (error) return next(error);
       if (!user) {
-        const messages = await messageDB.getMessages();
-        return res.status(400).render(view, { messages, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
+        const posts = await postsDB.getPosts();
+        return res.status(400).render(view, { posts, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
       }
       return req.logIn(user, (err) => {
         if (err) return next(err);
@@ -75,15 +75,15 @@ exports.logOut = (req, res, next) => {
   });
 };
 
-exports.createMessage = [
+exports.createPost = [
   validate.message,
   async (req, res, next) => {
     const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const messages = await messageDB.getMessages();
+      const posts = await postsDB.getPosts();
       return res.status(400).render(view, {
-        messages,
+        posts,
         errors: errors.array(),
         modalId: 'messageModal',
       });
@@ -96,7 +96,7 @@ exports.createMessage = [
         authorId: req.user.id,
         authorUsername: req.user.username,
       };
-      await messageDB.createMessage(message);
+      await postsDB.createPosts(message);
       return res.redirect(req.session.previousPath);
     } catch (error) {
       return next(error);
@@ -109,9 +109,9 @@ exports.checkPasscode = [
     const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const match = req.body.passcode === process.env.PASSCODE;
     if (!match) {
-      const messages = await messageDB.getMessages();
+      const posts = await postsDB.getPosts();
       res.status(400).render(view, {
-        messages,
+        posts,
         errors: [{ msg: 'Incorrect Passcode' }],
         modalId: 'passcodeModal',
       });

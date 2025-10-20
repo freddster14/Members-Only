@@ -1,7 +1,15 @@
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: #E3EEF7 #10263A;
+}
+
+
 body {
   padding: 0px 20px;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1000px;
   background-color: #10263A;
   color: #E3EEF7;
 }
@@ -15,7 +23,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #0A1A26;
+  background-color: #00000052;
+  backdrop-filter: blur(10px);
   padding: 15px 20px;
   border-radius: 3rem;
   top: 1rem;
@@ -41,7 +50,8 @@ nav img {
   align-items: center;
 }
 
-.nav-buttons button {
+.nav-buttons button, .nav-buttons a {
+  text-decoration: none;
   font-size: 0.9rem;
   border-radius: 2rem;
   padding: 8px 20px;
@@ -73,7 +83,8 @@ nav img {
   margin: 0 auto;
   font-size: 1.1rem;
   margin-top: 50px;
-  width: clamp(0px, 90vw, 1000px);
+  padding-bottom: 50px;
+  width: clamp(0px, 90vw, 800px);
 }
 
 .posts ul {

@@ -25,4 +25,4 @@ exports.getByUsername = async (username) => {
 
 exports.addToClub = async (id) => {
   await pool.query('UPDATE users SET status=$1 WHERE id=$2', ['member', id]);
-}
+};

@@ -1,0 +1,21 @@
+main {
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  padding: 1rem;
+  width: clamp(0px, 90vw, 600px);
+  background-color: #0A1A26;
+}
+
+.posts {
+  width: auto;
+  font-size: 1rem;
+  padding: 0px;
+}
+.posts li {
+  background-color: #10263A;
+}
+
+.profile-user, .timestamp {
+  background-color: #173B56;
+}

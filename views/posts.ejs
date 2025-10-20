@@ -10,7 +10,7 @@
   <%- include('nav')%>
   <main class="posts">
     <ul>
-    <% messages.forEach(content => { %>
+    <% posts.forEach(content => { %>
       <li>
         <h2><%= content.title %></h2>
         <div class="profile-time">
@@ -27,7 +27,7 @@
           </div>
           <p class="timestamp"><img class="icon" src="/img/time-svgrepo-com.svg" alt="time"> <%= dayjs(content.date).fromNow() %></p>
         <%} %>
-      </div>
+        </div>
         <p><%= content.message %></p>
       </li>
     <% }) %>
