@@ -51,19 +51,18 @@
       <%- include('errors')%>
     <% } %>
     <form action="/sign-up" method="post">
-      <label for="first_name">First Name<span style="color: #bf0d0d;">*</span></label>
-      <input type="text" id="first_name" autocomplete="given-name" name="first_name" required>
-      <label for="last_name">Last Name</label>
-      <input type="text" id="last_name" autocomplete="family-name" name="last_name">
-      <label for="new_username">Username<span style="color: #bf0d0d;">*</span></label>
-      <input type="text" id="new_username" autocomplete="off" name="new_username" required>
-      <label for="new_password">Password<span style="color: #bf0d0d;">*</span></label>
-      <input type="password" id="new_password" autocomplete="new_password" name="new_password" required>
-      <label for="password_confirmation">Confirm Password<span style="color: #bf0d0d;">*</span></label>
-      <input type="password" id="password_confirmation" autocomplete="new-password" name="password_confirmation" required>
+      <label for="first-name">First Name<span style="color: #bf0d0d;">*</span></label>
+      <input type="text" id="first-name" autocomplete="given-name" name="firstName" required>
+      <label for="last-name">Last Name</label>
+      <input type="text" id="last-name" autocomplete="family-name" name="lastName">
+      <label for="new-username">Username<span style="color: #bf0d0d;">*</span></label>
+      <input type="text" id="new-username" autocomplete="off" name="newUsername" required>
+      <label for="new-password">Password<span style="color: #bf0d0d;">*</span></label>
+      <input type="password" id="new-password" autocomplete="new-password" name="newPassword" required>
+      <label for="password-confirmation">Confirm Password<span style="color: #bf0d0d;">*</span></label>
+      <input type="password" id="password-confirmation" autocomplete="new-password" name="passwordConfirmation" required>
       <button type="submit">Sign Up</button>
     </form>
-
   </div>
 </div>
 <div id="logInModal" class="modal">

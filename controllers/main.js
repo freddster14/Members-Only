@@ -15,6 +15,11 @@ exports.home = async (req, res) => {
   res.render('posts', { messages, modalId: '' });
 };
 
+exports.profile = async (req, res) => {
+  console.log(req.user);
+  res.render('profile');
+};
+
 exports.createUser = [
   validate.signUp,
   async (req, res, next) => {
@@ -26,13 +31,13 @@ exports.createUser = [
     }
     try {
       const {
-        first_name,
-        last_name,
-        new_username,
-        new_password
+        firstName,
+        lastName,
+        newUsername,
+        newPassword,
       } = req.body;
-      const hashedPassword = await bcrypt.hash(new_password, 12);
-      await userDB.createUser(first_name, last_name, new_username, hashedPassword);
+      const hashedPassword = await bcrypt.hash(newPassword, 12);
+      await userDB.createUser(firstName, lastName, newUsername, hashedPassword);
       return res.redirect(req.session.previousPath);
     } catch (error) {
       return next(error);

@@ -30,6 +30,7 @@ function checkInputLimit (e, input) {
   e.nextElementSibling.style.color = '#E3EEF7';
   if (input === 'textarea' && e.value.length > 200) {
     e.value = previousValues[input];
+    e.nextElementSibling.style.color = '#bf0d0d';
   } else if (input === 'title' && e.value.length > 25) {
     e.value = previousValues[input];
     e.nextElementSibling.style.color = '#bf0d0d';

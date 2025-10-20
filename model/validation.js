@@ -2,19 +2,19 @@ const { body } = require('express-validator');
 const userDB = require('./db/user');
 
 exports.signUp = [
-  body('first_name')
+  body('firstName')
     .trim()
     .notEmpty()
     .withMessage('First name cannot be empty')
     .bail()
     .matches(/^[a-zA-Z\s-]+$/)
     .withMessage('First name must contain only letters, spaces, or hyphens'),
-  body('last_name')
+  body('lastName')
     .trim()
     .optional({ values: 'falsy' })
     .matches(/^[a-zA-Z\s-]+$/)
     .withMessage('Last name must contain only letters, spaces, or hyphens'),
-  body('new_username')
+  body('newUsername')
     .trim()
     .notEmpty()
     .withMessage('Username cannot be empty')
@@ -27,20 +27,20 @@ exports.signUp = [
         throw new Error('Username aleady taken');
       }
     }),
-  body('new_password')
+  body('newPassword')
     .trim()
     .notEmpty()
     .withMessage('Password cannot be empty')
     .bail()
     .isLength({ min: 6 })
     .withMessage('Password too small'),
-  body('password_confirmation')
+  body('passwordConfirmation')
     .trim()
     .notEmpty()
     .withMessage('Password confirmation is required')
     .bail()
     .custom((value, { req }) => {
-      if (value !== req.body.password) {
+      if (value !== req.body.newPassword) {
         throw new Error('Passwords do not match');
       }
       return true;
