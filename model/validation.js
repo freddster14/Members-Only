@@ -64,7 +64,7 @@ exports.message = [
     .notEmpty()
     .withMessage('Title cannot be empty')
     .bail()
-    .isLength({ max: 50 })
+    .isLength({ max: 25 })
     .withMessage('Title too long'),
   body('message')
     .trim()

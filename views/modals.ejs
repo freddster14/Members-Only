@@ -33,10 +33,12 @@
       <%- include('errors')%>
     <% } %>
     <form action="/new-message" method="post">
-      <label for="title">Title<span style="color: red;">*</span></label>
-      <input type="text" id="title" name="title" required>
-      <label for="message">Message<span style="color: red;">*</span></label>
-      <textarea name="message" id="message" required></textarea>      
+      <label for="title">Title<span style="color: #bf0d0d;">*</span></label>
+      <input oninput="checkInputLimit(this, 'title')" type="text" id="title" name="title" required>
+      <p style="margin: -10px 0px 0px 0px; font-size: 0.9rem;">Max Char. 25</p>
+      <label for="message">Message<span style="color: #bf0d0d;">*</span></label>
+      <textarea oninput="checkInputLimit(this, 'textarea')" name="message" id="message" required></textarea>
+      <p style="margin: -10px 0px 0px 0px; font-size: 0.9rem;">Max Char. 200</p>
       <button type="submit">Post</button>
     </form>
   </div>
@@ -49,15 +51,15 @@
       <%- include('errors')%>
     <% } %>
     <form action="/sign-up" method="post">
-      <label for="first_name">First Name<span style="color: red;">*</span></label>
+      <label for="first_name">First Name<span style="color: #bf0d0d;">*</span></label>
       <input type="text" id="first_name" autocomplete="given-name" name="first_name" required>
       <label for="last_name">Last Name</label>
       <input type="text" id="last_name" autocomplete="family-name" name="last_name">
-      <label for="new_username">Username<span style="color: red;">*</span></label>
+      <label for="new_username">Username<span style="color: #bf0d0d;">*</span></label>
       <input type="text" id="new_username" autocomplete="off" name="new_username" required>
-      <label for="new_password">Password<span style="color: red;">*</span></label>
+      <label for="new_password">Password<span style="color: #bf0d0d;">*</span></label>
       <input type="password" id="new_password" autocomplete="new_password" name="new_password" required>
-      <label for="password_confirmation">Confirm Password<span style="color: red;">*</span></label>
+      <label for="password_confirmation">Confirm Password<span style="color: #bf0d0d;">*</span></label>
       <input type="password" id="password_confirmation" autocomplete="new-password" name="password_confirmation" required>
       <button type="submit">Sign Up</button>
     </form>

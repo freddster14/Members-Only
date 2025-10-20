@@ -75,6 +75,14 @@
   border-bottom: 2px solid #E3EEF7;
 }
 
+.modal-content textarea {
+  overflow: hidden;
+  resize: none;
+  height: auto;
+  min-height: 25px;
+  max-height: 500px;
+}
+
 .form-buttons {
   display: flex;
   justify-content: space-between;

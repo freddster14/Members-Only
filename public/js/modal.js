@@ -1,6 +1,7 @@
 const passcodeInputs = document.querySelectorAll('.passcode-input');
+const passcode = ['', '', '', ''];
 let currentIndex = 0;
-let passcode = ['', '', '', ''];
+const previousValues = {};
 
 function openModal(modalId) {
   document.getElementById(modalId).style.display = 'block';
@@ -24,9 +25,29 @@ function passcodeEvent(n) {
   }
 }
 
+function checkInputLimit (e, input) {
+  if (!previousValues[input]) previousValues[input] = e.value;
+  e.nextElementSibling.style.color = '#E3EEF7';
+  if (input === 'textarea' && e.value.length > 200) {
+    e.value = previousValues[input];
+  } else if (input === 'title' && e.value.length > 25) {
+    e.value = previousValues[input];
+    e.nextElementSibling.style.color = '#bf0d0d';
+  }
+  previousValues[input] = e.value;
+}
+
 window.onclick = (e) => {
   if (e.target.classList.contains('modal')) {
     e.target.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
 };
+
+// textarea style logic
+
+document.getElementById('message').addEventListener('input', (e) => {
+  console.log(e.target.scrollHeight)
+  e.target.style.height = 'auto';
+  e.target.style.height = `${e.target.scrollHeight - 13}px`;
+});
