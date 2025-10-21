@@ -9,7 +9,7 @@
       <% } else { %>
         <a href="/profile/<%= currentUser.id %>" class="join"><%= currentUser.username %></a>
       <% } %>
-      <button class="post" onclick="openModal('messageModal')">Post</button>
+      <button class="post" onclick="openModal('postModal')">Post</button>
       <button class="log-out" onclick="openModal('logOutModal')">Log Out</button>
       <% } else { %>
         <button class="sign-up" onclick="openModal('signUpModal')">Sign Up</button>

@@ -1,6 +1,6 @@
-<div id="passcodeModal" class="modal">
+<div id="passcodeModal" class="modal" >
   <div class="modal-content" style="max-width: 300px;">
-    <span class="close" onclick="closeModal('passcodeModal')">&times;</span>
+    <span tabindex="0" class="close" onclick="closeModal('passcodeModal')">&times;</span>
     <h2>Enter Passcode</h2>
     <% if(modalId==='passcodeModal' ) { %>
       <%- include('errors')%>
@@ -8,14 +8,14 @@
     <form action="/passcode" method="post">
       <input type="text" id="real-passcode" name="passcode" hidden>
       <div class="passcode-inputs">
-        <input type="text" class="passcode-input" maxlength="1" readonly>
-        <input type="text" class="passcode-input" maxlength="1" readonly>
-        <input type="text" class="passcode-input" maxlength="1" readonly>
-        <input type="text" class="passcode-input" maxlength="1" readonly>
+        <input tabindex="-1" type="text" class="passcode-input" maxlength="1" readonly>
+        <input tabindex="-1" type="text" class="passcode-input" maxlength="1" readonly>
+        <input tabindex="-1" type="text" class="passcode-input" maxlength="1" readonly>
+        <input tabindex="-1" type="text" class="passcode-input" maxlength="1" readonly>
       </div>
       <div class="keypad">
         <% [1,2,3,4,5,6,7,8,9,0].forEach(n=> { %>
-          <button type="button" onclick="passcodeEvent(<%= n %>)">
+          <button tabindex="0" type="button" onclick="passcodeEvent(<%= n %>)">
             <%= n %>
           </button>
         <% }) %>
@@ -25,11 +25,11 @@
   </div>
 </div>
 
-<div id="messageModal" class="modal">
+<div id="postModal" class="modal" tabindex="-1">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('messageModal')">&times;</span>
-    <h2>New Message</h2>
-    <% if(modalId==='messageModal' ) { %>
+    <span tabindex="0" class="close" onclick="closeModal('postModal')">&times;</span>
+    <h2>New Post</h2>
+    <% if(modalId==='postModal' ) { %>
       <%- include('errors')%>
     <% } %>
     <form action="/new-message" method="post">
@@ -45,7 +45,7 @@
 </div>
 <div id="signUpModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('signUpModal')" >&times;</span>
+    <span tabindex="0" class="close" onclick="closeModal('signUpModal')" >&times;</span>
     <h2>Sign Up</h2>
     <% if(modalId==='signUpModal' ) { %>
       <%- include('errors')%>
@@ -67,7 +67,7 @@
 </div>
 <div id="logInModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('logInModal')">&times;</span>
+    <span tabindex="0" class="close" onclick="closeModal('logInModal')">&times;</span>
     <h2>Log In</h2>
     <% if(modalId==='logInModal' ) { %>
       <%- include('errors')%>
@@ -83,7 +83,7 @@
 </div>
 <div id="logOutModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('logOutModal')">&times;</span>
+    <span tabindex="0" class="close" onclick="closeModal('logOutModal')">&times;</span>
     <h2>Log Out</h2>
     <form action="/log-out" method="get">
       <p style="margin: 0;">Are you sure you want to leave?</p>

@@ -9,6 +9,22 @@
 </head>
   <%- include('nav')%>
   <main class="posts">
+    <% if (!currentUser) { %>
+      <div style="background-color: #173B56; margin-top: -20px;" class="errors">
+        <img class="icon" src="/img/error-16-svgrepo-com.svg" alt="error">
+        <p style="margin:5px 0px;">
+          <span tabindex="0" style="text-decoration: underline; cursor: pointer;" onkeydown="if (event.code === 'Enter' ) openModal('passcodeModal')" onclick="openModal('signUpModal')">Sign up</span> or
+          <span tabindex="0" style="cursor: pointer; text-decoration: underline;" onkeydown="if (event.code === 'Enter' ) openModal('passcodeModal')" onclick="openModal('logInModal')">log in</span> to start posting.</p>
+      </div>
+    <% } else if (currentUser.status==='guest') { %>
+      <div style="background-color: #173B56; margin-top: -20px;" class="errors">
+        <img class="icon" src="/img/error-16-svgrepo-com.svg" alt="error">
+        <p style="margin:5px 0px;">
+          <span tabindex="0" style="text-decoration: underline; cursor: pointer;" onkeydown="if (event.code === 'Enter' ) openModal('passcodeModal')"  onclick="openModal('passcodeModal')">Join the club</span>
+           to view authors and timestampts of posts.
+        </p>
+      </div>
+    <% } %>
     <ul>
     <% posts.forEach(content => { %>
       <li>

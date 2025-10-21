@@ -133,8 +133,8 @@
 }
 
 .passcode-input {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: auto;
   cursor: default;
   text-align: center;
 }

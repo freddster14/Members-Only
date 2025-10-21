@@ -4,8 +4,11 @@ let currentIndex = 0;
 const previousValues = {};
 
 function openModal(modalId) {
-  document.getElementById(modalId).style.display = 'block';
+  const modal = document.getElementById(modalId);
+  modal.style.display = 'block';
   document.body.style.overflow = 'hidden';
+  const firstInput = modal.querySelector('input:not([type="hidden"])');
+  if (firstInput) firstInput.focus();
 }
 
 function closeModal(modalId) {
