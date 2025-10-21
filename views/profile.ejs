@@ -6,27 +6,29 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/modals.css">
   <link rel="stylesheet" href="/css/profile.css">
-  <title><%= currentUser.username %></title>
+  <title><%= user.username %></title>
 </head>
 <body>
   <%- include('nav')%>
   <main>
     <a href="/posts"><span style="font-size: 1.3rem;"><</span> Back</a>
-    <h1><%= currentUser.first_name %>, <%= currentUser.last_name %></h1>
+      <h1><%= user.username %></h1>
     <div class="user-status">
-      <h2><%= currentUser.username %></h2>
-      <h2 class="status"><%= currentUser.status %></h2>
+      <h2><%= user.first_name %> <%= user.last_name %></h2>
+      <h2 class="status"><%= user.status %></h2>
     </div>
     <div class="posts">
-       <ul>
+      <ul>
       <% if (posts) { %>
         <% posts.forEach(content => { %>
           <li>
             <div class="post-header">
               <h2><%= content.title %></h2>
-              <form action="/delete/<%= content.id %>" method="post">
-                <button type="submit"><img class="trash-can" src="/img/trash-xmark-svgrepo-com.svg" alt="trash can"></button>
-              </form>
+              <% if(currentUser.id === content.author_id) { %>
+                <form action="/delete/<%= content.id %>" method="post">
+                  <button type="submit"><img class="trash-can" src="/img/trash-xmark-svgrepo-com.svg" alt="trash can"></button>
+                </form>
+              <% } %>
             </div>
             <div class="profile-time">
               <div class="profile-user">

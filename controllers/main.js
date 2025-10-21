@@ -17,14 +17,16 @@ exports.home = async (req, res) => {
 
 exports.profile = async (req, res) => {
   if (!req.user) res.redirect('/');
-  const posts = await postsDB.getUserPosts(req.user.id);
-  res.render('profile', { posts, modalId: '' });
+  const { id } = req.params;
+  const user = await userDB.getById(id);
+  const posts = await postsDB.getUserPosts(id);
+  res.render('profile', { user, posts, modalId: '' });
 };
 
 exports.deleteUserPost = async (req, res) => {
   const { id } = req.params;
   await userDB.deleteUserPost(id);
-  res.redirect('/profile');
+  res.redirect(`/profile/${req.user.id}`);
 };
 
 exports.createUser = [
@@ -103,7 +105,7 @@ exports.createPost = [
         authorId: req.user.id,
         authorUsername: req.user.username,
       };
-      await postsDB.createPosts(message);
+      await postsDB.createPost(message);
       return res.redirect(req.session.previousPath);
     } catch (error) {
       return next(error);

@@ -21,10 +21,12 @@
           </div>
           <p class="timestamp"><img class="icon" src="/img/time-svgrepo-com.svg" alt="time">???</p>
         <% } else { %>
-          <div class="profile-user">
-            <img class="icon" src="/img/user-alt-1-svgrepo-com.svg" alt="user">
-            <p><%= content.author_username %></p>
-          </div>
+          <a style="text-decoration: none; color: inherit;" href="/profile/<%= content.author_id %>">
+            <div class="profile-user">
+              <img class="icon" src="/img/user-alt-1-svgrepo-com.svg" alt="user">
+              <p><%= content.author_username %></p>
+            </div>
+          </a>
           <p class="timestamp"><img class="icon" src="/img/time-svgrepo-com.svg" alt="time"> <%= dayjs(content.date).fromNow() %></p>
         <%} %>
         </div>
