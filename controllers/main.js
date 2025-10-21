@@ -16,8 +16,15 @@ exports.home = async (req, res) => {
 };
 
 exports.profile = async (req, res) => {
+  if (!req.user) res.redirect('/');
   const posts = await postsDB.getUserPosts(req.user.id);
   res.render('profile', { posts, modalId: '' });
+};
+
+exports.deleteUserPost = async (req, res) => {
+  const { id } = req.params;
+  await userDB.deleteUserPost(id);
+  res.redirect('/profile');
 };
 
 exports.createUser = [

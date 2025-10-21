@@ -11,8 +11,9 @@
 <body>
   <%- include('nav')%>
   <main>
+    <a href="/posts"><span style="font-size: 1.3rem;"><</span> Back</a>
     <h1><%= currentUser.first_name %>, <%= currentUser.last_name %></h1>
-    <div>
+    <div class="user-status">
       <h2><%= currentUser.username %></h2>
       <h2><%= currentUser.status %></h2>
     </div>
@@ -21,7 +22,12 @@
       <% if (posts) { %>
         <% posts.forEach(content => { %>
           <li>
-            <h2><%= content.title %></h2>
+            <div class="post-header">
+              <h2><%= content.title %></h2>
+              <form action="/delete/<%= content.id %>" method="post">
+                <button type="submit"><img class="trash-can" src="/img/trash-xmark-svgrepo-com.svg" alt="trash can"></button>
+              </form>
+            </div>
             <div class="profile-time">
               <div class="profile-user">
                 <img class="icon" src="/img/user-alt-1-svgrepo-com.svg" alt="user">

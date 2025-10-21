@@ -8,6 +8,7 @@ mainRouter.get('/posts', mainController.home);
 mainRouter.get('/log-out', mainController.logOut);
 mainRouter.get('/profile', mainController.profile);
 
+mainRouter.post('/delete/:id', mainController.deleteUserPost);
 mainRouter.post('/sign-up', mainController.createUser);
 mainRouter.post('/log-in', mainController.logInUser);
 mainRouter.post('/new-message', mainController.createPost);

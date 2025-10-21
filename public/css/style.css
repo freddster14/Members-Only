@@ -5,8 +5,12 @@
   scrollbar-color: #E3EEF7 #10263A;
 }
 
+html {
+  font-size: 16px;
+}
 
 body {
+  font-size: 1rem;
   padding: 0px 20px;
   margin: 0 auto;
   max-width: 1000px;
@@ -101,6 +105,11 @@ nav img {
 
 .posts li h2 {
   margin: 16px 0px;
+  word-break: break-word;
+}
+
+.posts p {
+  word-break: break-word;
 }
 
 ul, li {
@@ -137,4 +146,18 @@ ul, li {
 
 .profile-user:hover, .profile-user:focus, .timestamp:hover, .timestamp:focus {
   background-color: #0A1A26;
+}
+
+@media only screen and (max-width:500px) {
+  html {
+    font-size: 12px;
+  }
+  
+  .mask p {
+    display: none;
+  }
+
+  .nav-buttons {
+    gap: 5px;
+  }
 }

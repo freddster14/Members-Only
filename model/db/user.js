@@ -26,3 +26,7 @@ exports.getByUsername = async (username) => {
 exports.addToClub = async (id) => {
   await pool.query('UPDATE users SET status=$1 WHERE id=$2', ['member', id]);
 };
+
+exports.deleteUserPost = async (id) => {
+  await pool.query('DELETE FROM messages WHERE id=$1', [id]);
+};
