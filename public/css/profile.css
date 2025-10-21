@@ -18,21 +18,26 @@ main a {
 }
 h1 {
   margin-top: 0;
+  font-size: 1.8rem;
 }
 
 .user-status {
   display: flex;
   align-items: center;
   gap: 1rem;
+  font-size: 1rem;
 }
 
 .user-status h2 {
   background-color: #173B56;
-  padding: 1rem;
-  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
   margin: 0;
 }
 
+h2.status {
+  background-color: #10263A;
+}
 .posts {
   margin-top: 1rem;
   width: auto;
