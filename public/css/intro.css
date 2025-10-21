@@ -4,7 +4,6 @@
   flex-direction: column;
   font-size: 1.2rem;
   margin: 0 auto;
-  width: clamp(0px, 90vw, 1000px);
   margin-top: 55px;
 }
 
