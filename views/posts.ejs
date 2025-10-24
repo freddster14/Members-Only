@@ -28,7 +28,15 @@
     <ul>
     <% posts.forEach(content => { %>
       <li>
-        <h2><%= content.title %></h2>
+        <div class="post-header">
+          <h2><%= content.title %></h2>
+            <% if( currentUser && currentUser.status === 'admin') { %>
+              <form action="/delete/<%= content.id %>" method="post">
+                <button class="delete-btn" type="submit"><img class="trash-can" src="/img/trash-xmark-svgrepo-com.svg" alt="trash can"></button>
+              </form>
+            <% } %>
+          
+        </div>
         <div class="profile-time">
         <% if (!currentUser || currentUser.status === 'guest') { %>
           <div class="profile-user">

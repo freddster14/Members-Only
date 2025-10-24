@@ -9,13 +9,20 @@ main {
   position: relative;
 }
 
-main a {
+.actions {
   position: absolute;
-  top: -2rem;
-  left: 0.7rem;
-  text-decoration: none;
+    width: clamp(0px, 90vw, 580px);
+  top: -1.8rem;
+  left: 0.6rem;
   color: #E3EEF7;
   font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions a {
+  color: inherit;
 }
 h1 {
   margin-top: 0;
@@ -49,26 +56,6 @@ h2.status {
   background-color: #10263A;
 }
 
-.post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-form button {
-  background: transparent;
-  border: none;
-}
-
-.trash-can {
-  width: 2rem;
-  transition: transform 0.2s;
-}
-
-.trash-can:hover, .trash-can:focus {
-  transform: scale(1.2);
-}
 
 .profile-user, .timestamp {
   background-color: #173B56;

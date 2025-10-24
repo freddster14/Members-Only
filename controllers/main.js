@@ -29,6 +29,10 @@ exports.deleteUserPost = async (req, res) => {
   res.redirect(`/profile/${req.user.id}`);
 };
 
+exports.admin = (req, res) => {
+  res.render('admin', { modalId: '' });
+};
+
 exports.createUser = [
   validate.signUp,
   async (req, res, next) => {
@@ -127,6 +131,20 @@ exports.checkPasscode = [
     } else {
       await userDB.addToClub(req.user.id);
       res.redirect(req.session.previousPath);
+    }
+  },
+];
+
+exports.adminSignUp = [
+  async (req, res) => {
+    if (!req.user) res.redirect('/');
+    const usernameMatch = req.body.adminUsername === process.env.ADMIN_USERNAME;
+    const passwordMatch = req.body.adminPassword === process.env.ADMIN_PASSWORD;
+    if (usernameMatch && passwordMatch) {
+      await userDB.grantAdmin(req.user.id);
+      res.redirect('/');
+    } else {
+      res.status(400).render('admin', { modalId: '', errors: [{ msg: 'Incorrect credentials' }] });
     }
   },
 ];

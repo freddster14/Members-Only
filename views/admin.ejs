@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/modals.css">
+  <title>Admin?</title>
+</head>
+<body>
+  <%- include('nav')%>
+  <main style="position: relative; width: fit-content; margin: 0 auto; padding-top: 2rem;">
+    <a class="back" href="/posts"><span><</span> Back</a>
+    <div class="modal-content">
+      <h2>Admin Sign Up</h2>
+      <%- include('errors')%>
+      <form action="/admin" method="post">
+        <label for="admin-username">Username</label>
+        <input type="text" id="admin-username" name="adminUsername">
+        <label for="admin-password">Password</label>
+        <input type="text" id="admin-password" name="adminPassword">
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+   
+  </main>
+  <%- include('modals') %>
+  <script src="/js/modal.js"></script>
+</body>
+</html>

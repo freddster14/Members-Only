@@ -30,3 +30,7 @@ exports.addToClub = async (id) => {
 exports.deleteUserPost = async (id) => {
   await pool.query('DELETE FROM messages WHERE id=$1', [id]);
 };
+
+exports.grantAdmin = async (id) => {
+  await pool.query('UPDATE users SET status=$1 WHERE id=$2', ['admin', id]);
+};

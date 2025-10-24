@@ -11,8 +11,13 @@
 <body>
   <%- include('nav')%>
   <main>
-    <a href="/posts"><span style="font-size: 1.3rem;"><</span> Back</a>
-      <h1><%= user.username %></h1>
+    <div class="actions">
+      <a href="/posts"><span><</span> Back</a>
+      <% if (currentUser.status !== 'admin') { %>
+        <a href="/admin">Admin?</a>
+      <% } %>
+    </div>
+    <h1><%= user.username %></h1>
     <div class="user-status">
       <h2><%= user.first_name %> <%= user.last_name %></h2>
       <h2 class="status"><%= user.status %></h2>
@@ -24,9 +29,9 @@
           <li>
             <div class="post-header">
               <h2><%= content.title %></h2>
-              <% if(currentUser.id === content.author_id) { %>
+              <% if(currentUser.id === content.author_id || currentUser.status === 'admin') { %>
                 <form action="/delete/<%= content.id %>" method="post">
-                  <button type="submit"><img class="trash-can" src="/img/trash-xmark-svgrepo-com.svg" alt="trash can"></button>
+                  <button class="delete-btn" type="submit"><img class="trash-can" src="/img/trash-xmark-svgrepo-com.svg" alt="trash can"></button>
                 </form>
               <% } %>
             </div>

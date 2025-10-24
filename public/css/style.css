@@ -104,6 +104,28 @@ nav img {
   border-radius: 10px;
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+}
+
+.trash-can {
+  width: 2rem;
+  transition: transform 0.2s;
+
+}
+
+.trash-can:hover,
+.trash-can:focus {
+  transform: scale(1.2);
+}
+
 .posts li h2 {
   margin: 16px 0px;
   word-break: break-word;
