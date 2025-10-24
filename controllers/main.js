@@ -56,7 +56,11 @@ exports.createUser = [
       } = req.body;
       const hashedPassword = await bcrypt.hash(newPassword, 12);
       await userDB.createUser(firstName, lastName, newUsername, hashedPassword);
-      return res.redirect(req.session.previousPath);
+      const user = await userDB.getByUsername(newUsername);
+      return req.logIn(user, (err) => {
+        if (err) return next(err);
+        return res.redirect(req.session.previousPath || '/posts');
+      });
     } catch (error) {
       return next(error);
     }

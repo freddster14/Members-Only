@@ -53,5 +53,5 @@ window.onclick = (e) => {
 // textarea style logic
 document.getElementById('message').addEventListener('input', (e) => {
   e.target.style.height = 'auto';
-  e.target.style.height = `${e.target.scrollHeight - 12}px`;
+  e.target.style.height = `${e.target.scrollHeight - 7}px`;
 });
