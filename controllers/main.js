@@ -20,7 +20,7 @@ exports.profile = async (req, res) => {
   const { id } = req.params;
   const user = await userDB.getById(id);
   const posts = await postsDB.getUserPosts(id);
-  res.render('profile', { user, posts, modalId: '' });
+  res.render('profile', { user, posts, modalId: '', formData: {} });
 };
 
 exports.deleteUserPost = async (req, res) => {
@@ -30,7 +30,7 @@ exports.deleteUserPost = async (req, res) => {
 };
 
 exports.admin = (req, res) => {
-  res.render('admin', { modalId: '' });
+  res.render('admin', { modalId: '', formData: {} });
 };
 
 exports.createUser = [
@@ -39,7 +39,6 @@ exports.createUser = [
     const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(req.body)
       const posts = await postsDB.getPosts();
       return res.status(400).render(view, {
         posts,
@@ -110,6 +109,7 @@ exports.createPost = [
         posts,
         errors: errors.array(),
         modalId: 'messageModal',
+        formData: {},
       });
     }
     try {
@@ -138,6 +138,7 @@ exports.checkPasscode = [
         posts,
         errors: [{ msg: 'Incorrect Passcode' }],
         modalId: 'passcodeModal',
+        formData: {},
       });
     } else {
       await userDB.addToClub(req.user.id);
@@ -155,7 +156,7 @@ exports.adminSignUp = [
       await userDB.grantAdmin(req.user.id);
       res.redirect('/');
     } else {
-      res.status(400).render('admin', { modalId: '', errors: [{ msg: 'Incorrect credentials' }] });
+      res.status(400).render('admin', { modalId: '', errors: [{ msg: 'Incorrect credentials' }], formData: {} });
     }
   },
 ];
