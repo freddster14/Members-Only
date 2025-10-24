@@ -25,8 +25,10 @@ main {
   color: inherit;
 }
 h1 {
-  margin-top: 0;
-  font-size: 1.8rem;
+  margin: -5px 0 10px 0;
+  font-size: 2.3rem;
+  letter-spacing: 1.5px;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
 }
 
 .user-status {
@@ -41,6 +43,8 @@ h1 {
   padding: 0.5rem 1rem;
   border-radius: 7px;
   margin: 0;
+  letter-spacing: 1.5px;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
 }
 
 h2.status {
@@ -55,7 +59,6 @@ h2.status {
 .posts li {
   background-color: #10263A;
 }
-
 
 .profile-user, .timestamp {
   background-color: #173B56;

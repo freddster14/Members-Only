@@ -9,7 +9,8 @@
 
 .intro-section h1 {
   margin: 0;
-  font-size: 2.4em;
+  font-size: 4em;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
 }
 
 .intro-section a {
@@ -25,12 +26,14 @@
   border: none;
 }
 
+.peek:hover, .peek:focus {
+  background-color: #173B56;
+}
+
 .arrow {
   width: 30px;
   color: #E3EEF7;
 }
-
-
 
 .intro-section p {
   background-color: #0A1A26;
@@ -45,4 +48,8 @@
   font-weight: bold;
   font-size: 1.5rem;
   background-color: transparent;
+}
+
+.tagline {
+  margin-top: 5px;
 }

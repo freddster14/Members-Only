@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap');
+
 * {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
@@ -42,6 +44,10 @@ nav {
   color: inherit;
   display: flex;
   align-items: center;
+}
+
+.mask p, .mask span {
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
 }
 
 nav img {
