@@ -7,12 +7,12 @@ const userDB = require('../model/db/user');
 const postsDB = require('../model/db/posts');
 
 exports.intro = (req, res) => {
-  res.render('intro', { modalId: '' });
+  res.render('intro', { modalId: '', formData: {} });
 };
 
 exports.home = async (req, res) => {
   const posts = await postsDB.getPosts();
-  res.render('posts', { posts, modalId: '' });
+  res.render('posts', { posts, modalId: '', formData: {} });
 };
 
 exports.profile = async (req, res) => {
@@ -39,8 +39,14 @@ exports.createUser = [
     const view = req.session.previousPath !== '/' ? 'posts' : 'intro';
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(req.body)
       const posts = await postsDB.getPosts();
-      return res.status(400).render(view, { posts, modalId: 'signUpModal', errors: errors.array() });
+      return res.status(400).render(view, {
+        posts,
+        modalId: 'signUpModal',
+        errors: errors.array(),
+        formData: req.body,
+      });
     }
     try {
       const {
@@ -71,7 +77,12 @@ exports.logInUser = [
       if (error) return next(error);
       if (!user) {
         const posts = await postsDB.getPosts();
-        return res.status(400).render(view, { posts, modalId: 'logInModal', errors: [{ msg: 'Username and Password do not match' }] });
+        return res.status(400).render(view, {
+          posts,
+          modalId: 'logInModal',
+          errors: [{ msg: 'Username and Password do not match' }],
+          formData: {},
+        });
       }
       return req.logIn(user, (err) => {
         if (err) return next(err);

@@ -52,13 +52,14 @@
     <% } %>
     <form action="/sign-up" method="post">
       <label for="first-name">First Name<span style="color: #bf0d0d;">*</span></label>
-      <input type="text" id="first-name" autocomplete="given-name" name="firstName" required>
+      <input type="text" id="first-name" autocomplete="given-name" name="firstName" value="<%= formData.firstName || '' %>" required>
       <label for="last-name">Last Name</label>
-      <input type="text" id="last-name" autocomplete="family-name" name="lastName">
+      <input type="text" id="last-name" autocomplete="family-name" name="lastName" value="<%= formData.lastName || '' %>">
       <label for="new-username">Username<span style="color: #bf0d0d;">*</span></label>
-      <input type="text" id="new-username" autocomplete="off" name="newUsername" required>
+      <input type="text" id="new-username" autocomplete="off" name="newUsername" value="<%= formData.newUsername || '' %>" required>
       <label for="new-password">Password<span style="color: #bf0d0d;">*</span></label>
       <input type="password" id="new-password" autocomplete="new-password" name="newPassword" required>
+      <p></p>
       <label for="password-confirmation">Confirm Password<span style="color: #bf0d0d;">*</span></label>
       <input type="password" id="password-confirmation" autocomplete="new-password" name="passwordConfirmation" required>
       <button type="submit">Sign Up</button>

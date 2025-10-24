@@ -37,6 +37,8 @@ function checkInputLimit (e, input) {
   } else if (input === 'title' && e.value.length > 25) {
     e.value = previousValues[input];
     e.nextElementSibling.style.color = '#bf0d0d';
+  } else if (input === 'password' && e.value.length < 6) {
+    e.nextElementSibling.style.color = '#bf0d0d';
   }
   previousValues[input] = e.value;
 }
@@ -51,5 +53,5 @@ window.onclick = (e) => {
 // textarea style logic
 document.getElementById('message').addEventListener('input', (e) => {
   e.target.style.height = 'auto';
-  e.target.style.height = `${e.target.scrollHeight - 13}px`;
+  e.target.style.height = `${e.target.scrollHeight - 12}px`;
 });
