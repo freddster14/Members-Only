@@ -1,4 +1,3 @@
-require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { validationResult } = require('express-validator');
