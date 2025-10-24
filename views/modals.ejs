@@ -62,8 +62,8 @@
       <label for="new-username">Username<span style="color: #bf0d0d;">*</span></label>
       <input type="text" id="new-username" autocomplete="off" name="newUsername" value="<%= formData.newUsername || '' %>" required>
       <label for="new-password">Password<span style="color: #bf0d0d;">*</span></label>
-      <input type="password" id="new-password" autocomplete="new-password" name="newPassword" required>
-      <p></p>
+      <input oninput="checkInputLimit(this, 'password')" type="password" id="new-password" autocomplete="new-password" name="newPassword" required>
+      <p style="margin: -10px 0px 0px 0px; font-size: 0.9rem;">Min Char. 6</p>
       <label for="password-confirmation">Confirm Password<span style="color: #bf0d0d;">*</span></label>
       <input type="password" id="password-confirmation" autocomplete="new-password" name="passwordConfirmation" required>
       <button type="submit">Sign Up</button>
